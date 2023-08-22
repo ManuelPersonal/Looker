@@ -1,0 +1,413 @@
+# Reportes freemium
+include: "/reportes/freemium/behaviour.view.lkml"
+include: "/reportes/freemium/investment.view.lkml"
+include: "/reportes/freemium/spend.view.lkml"
+include: "/reportes/freemium/users.view.lkml"
+
+# Dimensiones
+include: "/views/aliados.view.lkml"
+include: "/views/dates.view.lkml"
+include: "/views/locations.view.lkml"
+include: "/views/people.view.lkml"
+include: "/views/benefit_types.view.lkml"
+
+# Reportes de beneficios
+include: "/reportes/benefits/beneficios.view.lkml"
+include: "/reportes/benefits/tokens.view.lkml"
+include: "/reportes/benefits/Stamps.view.lkml"
+include: "/reportes/benefits/Rewards.view.lkml"
+include: "/reportes/benefits/Promotions.view.lkml"
+include: "/reportes/benefits/Points.view.lkml"
+include: "/reportes/benefits/Bonus.view.lkml"
+
+connection: "darwin"
+
+### === DEMO ====
+include: "../modelo-demo/spin_premia.view.lkml"
+
+explore: spin_premia {}
+
+### =============
+
+#### BENEFICIOS ====
+
+explore: beneficios {
+  join: aliados {
+    fields: []
+    sql_on: ${beneficios.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${beneficios.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${beneficios.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${beneficios.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: benefit_types {
+    fields: []
+    sql_on: ${beneficios.benefit_type_id} = ${benefit_types.benefit_type_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: Bonus {
+  join: aliados {
+    fields: []
+    sql_on: ${Bonus.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${Bonus.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${Bonus.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${Bonus.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: benefit_types {
+    fields: []
+    sql_on: ${Bonus.benefit_type_id} = ${benefit_types.benefit_type_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: Points {
+  join: aliados {
+    fields: []
+    sql_on: ${Points.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${Points.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${Points.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${Points.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: benefit_types {
+    fields: []
+    sql_on: ${Points.benefit_type_id} = ${benefit_types.benefit_type_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: Promotions {
+  join: aliados {
+    fields: []
+    sql_on: ${Promotions.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${Promotions.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${Promotions.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${Promotions.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: benefit_types {
+    fields: []
+    sql_on: ${Promotions.benefit_type_id} = ${benefit_types.benefit_type_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: Rewards {
+  join: aliados {
+    fields: []
+    sql_on: ${Rewards.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${Rewards.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${Rewards.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${Rewards.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: benefit_types {
+    fields: []
+    sql_on: ${Rewards.benefit_type_id} = ${benefit_types.benefit_type_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: Stamps {
+  join: aliados {
+    fields: []
+    sql_on: ${Stamps.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${Stamps.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${Stamps.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${Stamps.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: benefit_types {
+    fields: []
+    sql_on: ${Stamps.benefit_type_id} = ${benefit_types.benefit_type_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: tokens {
+  join: aliados {
+    fields: []
+    sql_on: ${tokens.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${tokens.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${tokens.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${tokens.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: benefit_types {
+    fields: []
+    sql_on: ${tokens.benefit_type_id} = ${benefit_types.benefit_type_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+### FREEMIUM ======================================================================
+
+explore: behaviour {
+  join: aliados {
+    fields: []
+    sql_on: ${behaviour.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${behaviour.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${behaviour.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${behaviour.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: investment {
+  join: aliados {
+    fields: []
+    sql_on: ${investment.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${investment.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${investment.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${investment.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: spend {
+  join: aliados {
+    fields: []
+    sql_on: ${spend.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${spend.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${spend.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${spend.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+explore: users {
+  join: aliados {
+    fields: []
+    sql_on: ${users.aliado_id} = ${aliados.aliado_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: dates {
+    fields: []
+    sql_on: ${users.date_id} = ${dates.date_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: locations {
+    fields: []
+    sql_on: ${users.location_id} = ${locations.location_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+
+  join: people {
+    fields: []
+    sql_on: ${users.person_id} = ${people.person_id} ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
