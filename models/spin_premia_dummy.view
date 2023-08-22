@@ -1,0 +1,183 @@
+view: spin_premia {
+  sql_table_name: `daf-datalake-dev-refined.daf_kpis_spin_premia.tbl_gen_kpis_spin_premia` ;;
+
+  dimension: enrolling_sponsor_dim {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.enrolling_sponsor ;;
+  }
+
+  dimension: enrolling_sponsor {
+    type: string
+    sql: IF(${enrolling_sponsor_dim} IS NOT NULL, ${enrolling_sponsor_dim}, 'Otros')  ;;
+  }
+
+  dimension: estado {
+    type: string
+    sql: ${TABLE}.estado ;;
+  }
+
+  dimension_group: fecha_inicio_periodo {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.fecha_inicio_periodo ;;
+  }
+
+  dimension_group: fecha_insercion {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.fecha_insercion ;;
+  }
+
+  dimension: kpi {
+    type: string
+    sql: ${TABLE}.kpi ;;
+  }
+
+  dimension: periodo_dim {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.periodo ;;
+  }
+
+  dimension: periodo {
+    type: string
+    sql: IF(${periodo_dim} = 'day' OR ${periodo_dim} = 'día', 'day', ${periodo_dim}) ;;
+  }
+
+  dimension: plaza {
+    type: string
+    sql: ${TABLE}.plaza ;;
+  }
+
+  dimension: transaction_category {
+    type: string
+    sql: ${TABLE}.transaction_category ;;
+  }
+
+  dimension: transaction_type {
+    type: string
+    sql: ${TABLE}.transaction_type ;;
+  }
+
+  dimension: transactional_sponsor {
+    type: string
+    sql: ${TABLE}.transactional_sponsor ;;
+  }
+
+  dimension: user_type {
+    type: string
+    sql: ${TABLE}.user_type ;;
+  }
+
+  dimension: user_type_from_card_type {
+    type: string
+    sql: ${TABLE}.user_type_from_card_type ;;
+  }
+
+  dimension: valor {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.valor ;;
+  }
+
+  dimension: zona {
+    type: string
+    sql: ${TABLE}.zona ;;
+  }
+
+  measure: count {
+    type: count
+  }
+
+  measure: accruals_active_users {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'accruals by active users',${valor}, 0)), 4) ;;
+  }
+
+  measure: avg_accrual_users_sponsor {
+    type: number
+    sql: ROUND(AVG(IF(${kpi} = 'average_accrual_by_user_by_sponsor',${valor}, 0)), 4) ;;
+  }
+
+  measure: avg_accrual_users {
+    type: number
+    sql: ROUND(AVG(IF(${kpi} = 'average_accruals_by_user',${valor}, 0)), 4) ;;
+  }
+
+  measure: avg_points_accrual {
+    type: number
+    sql: ROUND(AVG(IF(${kpi} = 'average_points_by_accrual',${valor}, 0)), 4) ;;
+  }
+
+  measure: avg_points_redeem {
+    type: number
+    sql: ROUND(AVG(IF(${kpi} = 'average_points_by_redeem',${valor}, 0)), 4) ;;
+  }
+
+  measure: avg_redeems_users {
+    type: number
+    sql: ROUND(AVG(IF(${kpi} = 'average_redeems_by_user',${valor}, 0)), 4) ;;
+  }
+
+  measure: avg_redeems_users_sponsors {
+    type: number
+    sql: ROUND(AVG(IF(${kpi} = 'average_redeems_by_user_by_sponsor',${valor}, 0)), 4) ;;
+  }
+
+  measure: avg_ticket {
+    type: number
+    sql: ROUND(AVG(IF(${kpi} = 'average_ticket',${valor}, 0)), 4) ;;
+  }
+
+  measure: churn {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'churn',${valor}, 0)), 4) ;;
+  }
+
+  measure: churn_oxxo {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'churn_oxxo' AND ${enrolling_sponsor} = 'OXXO',${valor}, 0)), 4) ;;
+  }
+
+  measure: churn_rate {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'churn_rate',${valor}, 0)), 4) ;;
+  }
+
+  measure: churn_rate_oxxo {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'churn_rate_oxxo' AND ${enrolling_sponsor} = 'OXXO',${valor}, 0)), 4) ;;
+  }
+
+  measure: new_users {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'new_registered_users',${valor}, 0)), 4) ;;
+  }
+
+  measure: redeems_active_users {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'redeems by active users',${valor}, 0)), 4) ;;
+  }
+
+  measure: savings {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'savings',${valor}, 0)), 4) ;;
+  }
+
+  measure: time_redeem_registration {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'time_redeem_from_registration',${valor}, 0)), 4) ;;
+  }
+
+  measure: time_redeem_transaction {
+    type: number
+    sql: ROUND(SUM(IF(${kpi} = 'time_redeem_from_transaction',${valor}, 0)), 4) ;;
+  }
+
+
+}
