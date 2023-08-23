@@ -1,0 +1,140 @@
+include: "./joined_dims_benefits.view.lkml"
+include: "../freemium/joined_dims.view.lkml"
+
+view: beneficios {
+  sql_table_name: `daf-datalake-dev-trusted.premia_looker.FR_BF_daily` ;;  #Must change per table
+  extends: [joined_dims_benefits, joined_dims]
+
+  dimension: aliado_id {
+    type: number
+    sql: ${TABLE}.aliado_id ;;
+  }
+
+  dimension: date_id {
+    type: number
+    sql: ${TABLE}.date_id ;;
+  }
+
+  dimension: location_id {
+    type: number
+    sql: ${TABLE}.location_id ;;
+  }
+
+  dimension: person_id {
+    type: number
+    sql: ${TABLE}.person_id ;;
+  }
+
+  dimension: benefit_type_id {
+    type: number
+    sql: ${TABLE}.benefit_type_id ;;
+  }
+
+  dimension: benefit_type {
+    type: string
+    sql: ${benefit_types.benefit_type_dsc} ;;
+  }
+
+  dimension: benefit_category {
+    type: string
+    sql: ${benefit_types.benefit_category_dsc} ;;
+  }
+
+  measure: count {
+    type: count
+  }
+  # ===== KPIs =====
+
+  # BONUS
+  measure: total_accumulated_bonus {
+    group_label: "Bonus"
+    type: number
+    sql: SUM(${TABLE}.total_accumulated_bonus) ;;
+  }
+
+  # PROMOTIONS
+  measure: total_redeemed_promotions {
+    group_label: "Promociones"
+    type: number
+    sql: SUM(${TABLE}.total_redeemed_promotions) ;;
+  }
+
+
+  # REWARDS
+  measure: total_redeemed_rewards {
+    group_label: "Recompensas"
+    type: number
+    sql: SUM(${TABLE}.total_redeemed_rewards) ;;
+  }
+
+  measure: total_activated_rewards {
+    group_label: "Recompensas"
+    type: number
+    sql: SUM(${TABLE}.total_activated_rewards) ;;
+  }
+
+  measure: benefit_convertion_rate_rewards {
+    group_label: "Recompensas"
+    type: number
+    sql: SUM(${TABLE}.benefit_convertion_rate_rewards) ;;
+  }
+
+  # POINTS
+  measure: total_accumulated_points {
+    group_label: "Puntos"
+    type: number
+    sql: SUM(${TABLE}.total_accumulated_points) ;;
+  }
+
+  measure: total_redeemed_points {
+    group_label: "Puntos"
+    type: number
+    sql: SUM(${TABLE}.total_redeemed_points) ;;
+  }
+
+  measure: benefit_convertion_rate_points {
+    group_label: "Puntos"
+    type: number
+    sql: SUM(${TABLE}.benefit_convertion_rate_points) ;;
+  }
+
+  measure: benefit_convertion_rate_double_points {
+    group_label: "Puntos"
+    type: number
+    sql: SUM(${TABLE}.benefit_convertion_rate_double_points) ;;
+  }
+
+  # STAMPS
+  measure: total_activated_stamps {
+    group_label: "Estampas"
+    type: number
+    sql: SUM(${TABLE}.total_activated_stamps) ;;
+  }
+
+  measure: total_redeemed_stamps {
+    group_label: "Estampas"
+    type: number
+    sql: SUM(${TABLE}.total_redeemed_stamps) ;;
+  }
+
+  measure: benefit_convertion_rate_stamps {
+    group_label: "Estampas"
+    type: number
+    sql: SUM(${TABLE}.benefit_convertion_rate_stamps) ;;
+  }
+
+  # ADITIONAL POINTS
+  measure: total_accumulated_additional_points {
+    group_label: "Puntos"
+    type: number
+    sql: SUM(${TABLE}.total_accumulated_additional_points) ;;
+  }
+
+  # COUPONS
+  measure: total_redeemed_coupons {
+    group_label: "Cupones"
+    type: number
+    sql: SUM(${TABLE}.total_redeemed_coupons) ;;
+  }
+
+}
