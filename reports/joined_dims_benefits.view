@@ -1,0 +1,22 @@
+view: joined_dims_benefits {
+  extension: required
+
+  dimension: benefit_type_dsc {
+    type: string
+    sql: ${benefit_types.benefit_type_dsc} ;;
+  }
+
+  dimension: benefit_category_dsc {
+    type: string
+    sql: ${benefit_types.benefit_category_dsc} ;;
+  }
+
+  dimension: benefit_type_id {
+    type: number
+    sql: ${benefit_types.benefit_type_id} ;;
+  }
+
+  measure: count {
+    type: count
+  }
+}
