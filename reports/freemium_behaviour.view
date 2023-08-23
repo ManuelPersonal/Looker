@@ -1,0 +1,66 @@
+include: "./joined_dims.view.lkml"
+
+view: behaviour {
+  sql_table_name: `daf-datalake-dev-trusted.premia_looker.FR_BH_daily` ;;
+  extends: [joined_dims]
+
+  dimension: aliado_id {
+    type: number
+    sql: ${TABLE}.aliado_id ;;
+  }
+
+  dimension: date_id {
+    type: number
+    sql: ${TABLE}.date_id ;;
+  }
+  dimension: location_id {
+    type: number
+    sql: ${TABLE}.location_id ;;
+  }
+  dimension: person_id {
+    type: number
+    sql: ${TABLE}.person_id ;;
+  }
+
+  measure: count {
+    type: count
+  }
+
+  # ===== KPIs =====
+
+  measure: retention_rate_ally {
+    type: number
+    sql: SUM(${TABLE}.retention_rate_ally) ;;
+  }
+
+  measure: churn_rate_coalition {
+    type: number
+    sql: SUM(${TABLE}.churn_rate_coalition) ;;
+  }
+
+  measure: churn_rate_ally {
+    type: number
+    sql: SUM(${TABLE}.churn_rate_ally) ;;
+  }
+
+  measure: avg_frequency_ally {
+    type: number
+    sql: SUM(${TABLE}.avg_frequency_ally) ;;
+  }
+
+  measure: avg_points_redeemed_ally {
+    type: number
+    sql: SUM(${TABLE}.avg_points_redeemed_ally) ;;
+  }
+
+  measure: avg_frequency_redeem_ally {
+    type: number
+    sql: SUM(${TABLE}.avg_frequency_redeem_ally) ;;
+  }
+
+  measure: avg_frequency_accumulation_ally {
+    type: number
+    sql: SUM(${TABLE}.avg_frequency_accumulation_ally) ;;
+  }
+
+}
