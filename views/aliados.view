@@ -1,0 +1,19 @@
+view: aliados {
+  sql_table_name: `daf-datalake-dev-trusted.premia_looker.D_ALIADO` ;;
+
+  dimension: aliado_dsc {
+    type: string
+    sql: ${TABLE}.aliado_dsc ;;
+  }
+  dimension: aliado_id {
+    type: number
+    sql: ${TABLE}.aliado_id ;;
+  }
+  dimension: is_active {
+    type: yesno
+    sql: ${TABLE}.is_active ;;
+  }
+  measure: count {
+    type: count
+  }
+}
