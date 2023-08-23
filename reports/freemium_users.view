@@ -1,0 +1,67 @@
+include: "./joined_dims.view.lkml"
+
+view: users {
+  sql_table_name: `daf-datalake-dev-trusted.premia_looker.FR_UR_daily` ;;
+  extends: [joined_dims]
+
+  dimension: aliado_id {
+    type: number
+    sql: ${TABLE}.aliado_id ;;
+  }
+  dimension: date_id {
+    type: number
+    sql: ${TABLE}.date_id ;;
+  }
+  dimension: location_id {
+    type: number
+    sql: ${TABLE}.location_id ;;
+  }
+  dimension: person_id {
+    type: number
+    sql: ${TABLE}.person_id ;;
+  }
+  measure: count {
+    type: count
+  }
+
+  # ===== KPIs =====
+  # REVISAR LOS DATOS: USERS ES COUNT O SUM
+
+  measure: active_users_ally {
+    type: number
+    sql: SUM(${TABLE}.active_users_ally) ;;
+  }
+  measure: active_users_coalition {
+    type: number
+    sql: SUM(${TABLE}.active_users_coalition) ;;
+  }
+  ### CASE WHEN EN MODELADO PREVIO
+  measure: clients_per_age {
+    type: number
+    sql: SUM(${TABLE}.clients_per_age) ;;
+  }
+  measure: clients_per_gender {
+    type: number
+    sql: SUM(${TABLE}.clients_per_gender) ;;
+  }
+  measure: clients_per_location {
+    type: number
+    sql: SUM(${TABLE}.clients_per_location) ;;
+  }
+  measure: new_users_ally {
+    type: number
+    sql: SUM(${TABLE}.new_users_ally) ;;
+  }
+  measure: new_users_coalition {
+    type: number
+    sql: SUM(${TABLE}.new_users_coalition) ;;
+  }
+  measure: registered_users_ally {
+    type: number
+    sql: SUM(${TABLE}.registered_users_ally) ;;
+  }
+  measure: registered_users_coalition {
+    type: number
+    sql: SUM(${TABLE}.registered_users_coalition) ;;
+  }
+}
