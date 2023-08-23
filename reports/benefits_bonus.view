@@ -1,0 +1,9 @@
+include: "./joined_dims_benefits.view.lkml"
+include: "../freemium/joined_dims.view.lkml"
+
+view: Bonus {
+  ## sql_table_name: `daf-datalake-dev-trusted.premia_looker.FR_BF_daily` ;;
+  extends: [joined_dims, joined_dims_benefits]
+
+
+}
