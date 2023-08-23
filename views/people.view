@@ -1,0 +1,19 @@
+view: people {
+  sql_table_name: `daf-datalake-dev-trusted.premia_looker.D_PERSON` ;;
+
+  dimension: age_range {
+    type: string
+    sql: ${TABLE}.age_range ;;
+  }
+  dimension: gender_dsc {
+    type: string
+    sql: ${TABLE}.gender_dsc ;;
+  }
+  dimension: person_id {
+    type: number
+    sql: ${TABLE}.person_id ;;
+  }
+  measure: count {
+    type: count
+  }
+}
