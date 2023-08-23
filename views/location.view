@@ -1,0 +1,19 @@
+view: locations {
+  sql_table_name: `daf-datalake-dev-trusted.premia_looker.D_LOCATION` ;;
+
+  dimension: location_id {
+    type: number
+    sql: ${TABLE}.location_id ;;
+  }
+  dimension: state_dsc {
+    type: string
+    sql: ${TABLE}.state_dsc ;;
+  }
+  dimension: state_id {
+    type: number
+    sql: ${TABLE}.state_id ;;
+  }
+  measure: count {
+    type: count
+  }
+}
