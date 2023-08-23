@@ -1,0 +1,51 @@
+view: dates {
+  sql_table_name: `daf-datalake-dev-trusted.premia_looker.D_DATE` ;;
+
+  dimension: date_dsc {
+    type: string
+    sql: ${TABLE}.date_dsc ;;
+  }
+  dimension: date_id {
+    type: number
+    sql: ${TABLE}.date_id ;;
+  }
+  dimension: day_dsc {
+    type: string
+    sql: ${TABLE}.day_dsc ;;
+  }
+  dimension: day_number {
+    type: number
+    sql: ${TABLE}.day_number ;;
+  }
+  dimension: month_dsc {
+    type: string
+    sql: ${TABLE}.month_dsc ;;
+  }
+  dimension: month_id {
+    type: number
+    sql: ${TABLE}.month_id ;;
+  }
+  dimension: quarter_dsc {
+    type: string
+    sql: ${TABLE}.quarter_dsc ;;
+  }
+  dimension: quarter_id {
+    type: number
+    sql: ${TABLE}.quarter_id ;;
+  }
+  dimension: week_dsc {
+    type: string
+    sql: ${TABLE}.week_dsc ;;
+  }
+  dimension: week_id {
+    type: number
+    sql: ${TABLE}.week_id ;;
+  }
+  dimension: year_id {
+    type: number
+    sql: ${TABLE}.year_id ;;
+  }
+  measure: count {
+    type: count
+  }
+}
