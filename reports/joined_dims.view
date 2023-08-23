@@ -1,0 +1,64 @@
+view: joined_dims {
+  extension: required
+
+  dimension: aliado_name {
+    type: string
+    sql: ${aliados.aliado_dsc} ;;
+  }
+
+  dimension: is_aliado_active {
+    type: yesno
+    sql: ${aliados.is_active} ;;
+  }
+
+  dimension: state_name {
+    type: string
+    sql: ${locations.state_dsc} ;;
+  }
+
+  dimension: state_id {
+    type: number
+    sql: ${locations.state_id} ;;
+  }
+
+  dimension: age_range {
+    type: string
+    sql: ${people.age_range} ;;
+  }
+
+  dimension: gender {
+    type: string
+    sql: ${people.gender_dsc} ;;
+  }
+
+  dimension: date_dsc {
+    type: string
+    sql: ${dates.date_dsc} ;;
+  }
+
+  dimension: day {
+    type: number
+    sql: ${dates.day_number} ;;
+  }
+
+  dimension: month {
+    type: number
+    sql: ${dates.month_id} ;;
+  }
+
+  dimension: quarter {
+    type: number
+    sql: ${dates.quarter_id} ;;
+  }
+
+  dimension: week {
+    type: number
+    sql: ${dates.week_id} ;;
+  }
+
+  dimension: year {
+    type: number
+    sql: ${dates.year_id} ;;
+  }
+
+}
